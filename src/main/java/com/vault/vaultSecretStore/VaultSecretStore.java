@@ -70,12 +70,17 @@ public interface VaultSecretStore extends SimpleSecretStoreProvider {
         return "\"\"";
     }
 
+    @Attribute(order = 300)
+    default String vault_path() {
+        return "/v1/secret";
+    }
+
     /**
      * The token of the vault.
      *
      * @return the token of the vault to use for authentication.
      */
-    @Attribute(order = 300, requiredValue = true)
+    @Attribute(order = 400, requiredValue = true)
     String vault_token();
 
     @SubConfig(validator = SingleAliasPurposeMappingValidator.class)
@@ -126,6 +131,7 @@ public interface VaultSecretStore extends SimpleSecretStoreProvider {
         try {
             config = VaultConfig.builder(new HttpClientHandler(), URI.create(vault_base_uri()))
                     .namespace(vault_namespace())
+                    .path(vault_path())
                     .clock(Clock.systemUTC())
                     .purposeMapping(keyMappings)
                     .build();
