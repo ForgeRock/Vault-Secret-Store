@@ -22,6 +22,7 @@ import org.forgerock.openam.secrets.SecretStoreContext;
 import org.forgerock.openam.secrets.SimpleSecretStoreProvider;
 import org.forgerock.openam.secrets.config.PurposeMapping;
 import org.forgerock.openam.secrets.config.SingleAliasPurposeMappingValidator;
+import org.forgerock.openam.sm.annotations.adapters.Password;
 import org.forgerock.openam.sm.annotations.subconfigs.Multiple;
 import org.forgerock.secrets.*;
 import org.forgerock.secrets.keys.SigningKey;
@@ -81,7 +82,8 @@ public interface VaultSecretStore extends SimpleSecretStoreProvider {
      * @return the token of the vault to use for authentication.
      */
     @Attribute(order = 400, requiredValue = true)
-    String vault_token();
+    @Password
+    char[] vault_token();
 
     @SubConfig(validator = SingleAliasPurposeMappingValidator.class)
     Multiple<PurposeMapping> mappings();
@@ -103,7 +105,7 @@ public interface VaultSecretStore extends SimpleSecretStoreProvider {
                 new JsonPointer("data/cert"), VaultKeyValueSecretStore.SecretField.PEM
         );
         
-        SecretReference<GenericSecret> vaultToken = constant(password(vault_token().toCharArray()));
+        SecretReference<GenericSecret> vaultToken = constant(password(vault_token()));
         VaultConfig config = null;
 
 
