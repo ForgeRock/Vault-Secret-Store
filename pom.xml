@@ -13,7 +13,7 @@
  * information: "Portions copyright [year] [name of copyright owner]".
  *
  * Copyright 2017-2020 ForgeRock AS.
- * 
+ *
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -23,12 +23,12 @@
     <artifactId>vaultSecretStore</artifactId>
 
     <groupId>com.vault</groupId>
-    <version>0.0.19-SNAPSHOT</version>
+    <version>0.0.24-SNAPSHOT</version>
     <name>HashiCorp Vault Key Value Secret Store</name>
     <description>HashiCorp Vault Key Value Secret Store for ForgeRock's Platform</description>
 
     <properties>
-        <am.version>7.1.0</am.version>
+        <am.version>7.2.0</am.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
